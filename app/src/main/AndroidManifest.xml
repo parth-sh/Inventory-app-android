@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proj1">
         <activity
+            android:name=".CreateEntryActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:label="Add entry"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
