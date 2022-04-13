@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
             result -> {
-                if (false && result.getContents() == null) {
+                if (result.getContents() == null) {
                     //TODO: snack bar display not correct (should shift fab above before appearing)
                     Snackbar.make(findViewById(R.id.activity_main_fab_add_items), "Cancelled", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();

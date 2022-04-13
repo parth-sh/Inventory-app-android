@@ -15,4 +15,5 @@
     <color name="red_A200">#FF5252</color>
     <color name="green_A200">#69F0AE</color>
     <color name="BlueGrey_50">#ECEFF1</color>
+    <color name="BlueGrey_600">#546E7A</color>
 </resources>

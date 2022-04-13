@@ -2,18 +2,19 @@
     <!-- Base application theme. -->
     <style name="Theme.Proj1" parent="Theme.MaterialComponents.Light">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_50</item>
-        <item name="colorPrimaryVariant">@color/purple_50</item>
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_200</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/purple_200</item>
-        <item name="colorSecondaryVariant">@color/purple_200</item>
+        <item name="colorSecondaryVariant">@color/purple_500</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
         <item name="android:textColor">@color/black</item>
-        <!-- Dark status bar text -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="customEtBgColor">@color/BlueGrey_50</item>
     </style>
 </resources>
