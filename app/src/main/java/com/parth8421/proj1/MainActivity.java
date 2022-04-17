@@ -1,11 +1,15 @@
 package com.parth8421.proj1;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -13,6 +17,21 @@ import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final ActivityResultLauncher<Intent> startCreateEntryActivityForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        Intent intent = result.getData();
+                        String name = intent.getStringExtra(CreateEntryActivity.NAME);
+                        String cost = intent.getStringExtra(CreateEntryActivity.COST);
+//                        Entry entry = new Entry(name, Integer.parseInt(cost), Calendar.getInstance().getTime());
+//                        entryViewModel.insert(entry);
+                    }
+                    Toast.makeText(MainActivity.this, "Create activity ended", Toast.LENGTH_SHORT).show();
+                }
+            });
 
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
             result -> {
@@ -23,9 +42,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Intent intent = new Intent(MainActivity.this, CreateEntryActivity.class);
                     intent.putExtra("SCANNED_CODE", result.getContents());
-                    startActivity(intent);
+                    startCreateEntryActivityForResult.launch(intent);
                 }
             });
+
     FloatingActionButton fab_add_items;
 
     @Override
