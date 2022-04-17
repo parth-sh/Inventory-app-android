@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
             case R.id.delete_entries:
                 Toast.makeText(MainActivity.this, "Delete text", Toast.LENGTH_SHORT).show();
