@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,12 +27,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK) {
                         Intent intent = result.getData();
-                        String name = intent.getStringExtra(CreateEntryActivity.NAME);
-                        String cost = intent.getStringExtra(CreateEntryActivity.COST);
-//                        Entry entry = new Entry(name, Integer.parseInt(cost), Calendar.getInstance().getTime());
-//                        entryViewModel.insert(entry);
+                        String product_name = intent.getStringExtra(CreateEntryActivity.PRODUCT_NAME);
+                        String product_cost = intent.getStringExtra(CreateEntryActivity.PRODUCT_COST);
+                        String product_count = intent.getStringExtra(CreateEntryActivity.PRODUCT_COUNT);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Invalid return", Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(MainActivity.this, "Create activity ended", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -66,5 +69,24 @@ public class MainActivity extends AppCompatActivity {
                 );
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.delete_entries:
+                Toast.makeText(MainActivity.this, "Delete text", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
