@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The default font for RecyclerView items is too small.
+    The margin is a simple delimiter between the words. -->
+    <style name="product_name">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+
+    <style name="product_date">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Small</item>
+    </style>
+
+    <style name="product_cost">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+</resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="88dp"
+        android:orientation="horizontal">
+
+
+        <com.google.android.material.card.MaterialCardView
+            app:cardCornerRadius="250dp"
+            app:cardElevation="0dp"
+            app:strokeColor="@color/gray_300"
+            app:strokeWidth="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp">
+
+            <ImageView
+                android:id="@+id/recycler_view_item_iv_product_image"
+                android:layout_width="56dp"
+                android:layout_height="56dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/recycler_view_item_tv_product_name"
+                        style="@style/product_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/recycler_view_item_tv_product_count"
+                        style="@style/product_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/gray_500" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/recycler_view_item_tv_product_cost"
+                    style="@style/product_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="-₹ 100" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_300" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

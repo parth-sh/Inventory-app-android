@@ -5,6 +5,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +21,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+import com.parth8421.proj1.data.Product;
+import com.parth8421.proj1.recycler_view_components.ProductCustomAdapter;
+import com.parth8421.proj1.viewModel.ProductViewModel;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
+    RecyclerView product_list;
+    ProductCustomAdapter productCustomAdapter;
+    ProductViewModel productViewModel;
 
     private final ActivityResultLauncher<Intent> startCreateEntryActivityForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -30,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
                         String product_name = intent.getStringExtra(CreateEntryActivity.PRODUCT_NAME);
                         String product_cost = intent.getStringExtra(CreateEntryActivity.PRODUCT_COST);
                         String product_count = intent.getStringExtra(CreateEntryActivity.PRODUCT_COUNT);
+                        Product entry = new Product(
+                                product_name,
+                                Integer.parseInt(product_cost),
+                                Integer.parseInt(product_count)
+                        );
+                        productViewModel.insert(entry);
                     } else {
                         Toast.makeText(MainActivity.this, "Invalid return", Toast.LENGTH_SHORT).show();
                     }
@@ -69,6 +86,17 @@ public class MainActivity extends AppCompatActivity {
                 );
             }
         });
+
+        product_list = findViewById(R.id.activity_main_rv_product_list);
+        productCustomAdapter = new ProductCustomAdapter(new ProductCustomAdapter.EntryDiff());
+        product_list.setAdapter(productCustomAdapter);
+        product_list.setLayoutManager(new LinearLayoutManager(this));
+
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        productViewModel.getProductListObserver().observe(this, productList -> {
+            // Update the cached copy of entries in the adapter.
+            productCustomAdapter.submitList(productList);
+        });
     }
 
     @Override
@@ -82,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_entries:
-                Toast.makeText(MainActivity.this, "Delete text", Toast.LENGTH_SHORT).show();
+                productViewModel.deleteAll();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
